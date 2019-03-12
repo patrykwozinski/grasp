@@ -3,29 +3,47 @@ declare(strict_types=1);
 
 final class Price
 {
-	private $isUpdateable;
+	private $possibleUpdate;
 	private $amount;
-	private $multipier;
+	private $multiplier;
 
-	public function __construct(bool $isUpdateable, float $amount, int $multipier)
+	public function __construct(bool $possibleUpdate, float $amount, int $multiplier)
 	{
-		$this->isUpdateable = $isUpdateable;
-		$this->amount       = $amount;
-		$this->multipier    = $multipier;
+		$this->possibleUpdate = $possibleUpdate;
+		$this->amount         = $amount;
+		$this->multiplier     = $multiplier;
 	}
 
+	public function canUpdate(): bool
+	{
+		return $this->possibleUpdate;
+	}
 
+	public function lastAmount(): float
+	{
+		return $this->amount;
+	}
+
+	public function multiplier(): int
+	{
+		return $this->multiplier;
+	}
+
+	public function setAmount(float $amount): void
+	{
+		$this->amount = $amount;
+	}
 }
 
 final class UpdatePrice
 {
-	public function update($price): void
+	public function update(Price $price): void
 	{
 		if ($price->canUpdate())
 		{
 			$newPrice = $price->lastAmount() * $price->multiplier();
 
-			$price->setPrice($newPrice);
+			$price->setAmount($newPrice);
 		}
 	}
 }
