@@ -37,7 +37,7 @@ final class Price
 
 final class UpdatePrice
 {
-	public function update(Price $price): void
+	public function update(Price $price): Price
 	{
 		if ($price->canUpdate())
 		{
@@ -45,5 +45,7 @@ final class UpdatePrice
 
 			$price->setAmount($newPrice);
 		}
+
+		return $price;
 	}
 }
