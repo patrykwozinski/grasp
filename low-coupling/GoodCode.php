@@ -9,9 +9,16 @@ interface Neighbor
 
 final class Alpha
 {
-	public function withNeighbor(Neighbor $neighbor): self
+	private $neighbor;
+
+	public function __construct(Neighbor $neighbor)
 	{
 		$this->neighbor = $neighbor;
+	}
+
+	public function withNeighbor(Neighbor $neighbor): self
+	{
+		return new self($neighbor);
 	}
 
 	public function whoIsYourNeighbor(): Neighbor
