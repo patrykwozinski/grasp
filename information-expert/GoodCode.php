@@ -17,7 +17,7 @@ final class Price
 		return $this->possibleUpdate;
 	}
 
-	public function lastAmount(): float
+	public function amount(): float
 	{
 		return $this->amount;
 	}
