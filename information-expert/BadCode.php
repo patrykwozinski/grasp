@@ -17,7 +17,7 @@ final class Price
 		return $this->possibleUpdate;
 	}
 
-	public function lastAmount(): float
+	public function amount(): float
 	{
 		return $this->amount;
 	}
@@ -34,7 +34,7 @@ final class UpdatePrice
 	{
 		if ($price->canUpdate())
 		{
-			$newPrice = $price->lastAmount() * $multiplier;
+			$newPrice = $price->amount() * $multiplier;
 
 			$price->setAmount($newPrice);
 		}
